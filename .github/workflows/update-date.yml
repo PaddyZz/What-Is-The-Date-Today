@@ -11,8 +11,11 @@ on:
     # - cron: '*/5 * * * *'
     # At the beginning of every day.
     - cron: "0 0 * * *"
-
-# on: [push]
+  workflow_dispatch:
+  
+  push:
+    branches:
+    - main
 
 jobs:
   report:
