@@ -10,7 +10,7 @@ on:
     # Every 5 minutes.
     # - cron: '*/5 * * * *'
     # At the beginning of every day.
-    - cron: "35 16 * * *"
+    - cron: "0 0 * * *"
 
 # on: [push]
 
@@ -22,14 +22,15 @@ jobs:
         # https://github.com/actions/checkout/tree/v3.0.2
         uses: actions/checkout@v3
       - name: Modify date and time
-        run: |
-          date > README.md
-          cat README.md
+        #run: |
+        #  date > README.md
+        # cat README.md
+        run: echo "$(date '+%a %d-%m-%Y 00:00:01 UTC')" > README.md
       - name: Push to repository
         run: |
           git config --global user.name "PaddyzZ"
           git config --global user.email "PaddyzZ@users.noreply.github.com"
-          now=$(date)
+          now="$(date '+%a %d-%m-%Y 00:00:02 UTC')"
           git add -A
           git commit -m "Auto Push on $now"
           git push
